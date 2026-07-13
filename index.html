@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TriNova Helvetic Group — Swiss Riviera Property &amp; Hospitality Operations</title>
-<meta name="description" content="TriNova Helvetic Group is the Swiss operating and management company behind premium Swiss Riviera real estate and hospitality — hospitality, real estate &amp; business services, and AI &amp; advisory. Swiss presence, near-shore capability. Operating on the Swiss Riviera since 2021.">
+<meta name="description" content="TriNova Helvetic Group is the Swiss operating and management company behind Riviera real estate and hospitality — spanning hospitality, real estate &amp; business services, and AI &amp; advisory. Swiss presence, near-shore capability. On the Swiss Riviera since 2021.">
 <link rel="canonical" href="https://www.trinovahelveticgroup.ch/">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website">
@@ -43,7 +43,7 @@
     --red:#EC0016; --deep:#B5121B; --espresso:#2B2422; --stone:#D7D0C8; --ivory:#FBF7F1;
     --coral:#F4A39A; --blush:#F6D9CE; --rose:#EBD0C8; --taupe:#C9C0B6;
     --cream:#FBF3EC; --rosewash:#F7E6E0; --stonewash:#EFEAE3;
-    --body:#4A4646; --grey:#847F7E; --line:rgba(43,36,34,.12);
+    --body:#4A4646; --grey:#655F5E; --line:rgba(43,36,34,.12);
     --serif:'Spectral',Georgia,serif; --sans:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
     --grotesk:'Helvetica Neue',Helvetica,Arial,sans-serif;
     --wrap:1140px;
@@ -62,7 +62,7 @@
   .btn{font-family:var(--sans);display:inline-block;font-size:14px;font-weight:600;padding:12px 24px;border-radius:8px;cursor:pointer;border:0;transition:.15s;white-space:nowrap}
   .btn-strong{background:linear-gradient(120deg,#EC0016,#B5121B);color:#fff}
   .btn-strong:hover{filter:brightness(1.06)}
-  .btn-primary{background:linear-gradient(120deg,#F4A39A,#F6C3B7);color:#B5121B}
+  .btn-primary{background:linear-gradient(120deg,#B5121B,#EC0016);color:#fff}
   .btn-secondary{background:transparent;border:1.5px solid var(--deep);color:var(--deep);padding:10.5px 22px}
   .btn-secondary:hover{background:var(--deep);color:#fff}
 
@@ -98,9 +98,9 @@
   .divs{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:46px}
   .divcard{background:#fff;border:.5px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column}
   .divcard .top{padding:26px 26px 22px;color:#fff}
-  .divcard.hosp .top{background:linear-gradient(120deg,#C56A4E,#E3A488)}
-  .divcard.re .top{background:linear-gradient(120deg,#8a5340,#C56A4E)}
-  .divcard.ai .top{background:linear-gradient(120deg,#5E4636,#93715C)}
+  .divcard.hosp .top{background:linear-gradient(120deg,#C7413B,#E08A7C)}
+  .divcard.re .top{background:linear-gradient(120deg,#9E2A28,#C7413B)}
+  .divcard.ai .top{background:linear-gradient(120deg,#5E1F1E,#9E2A28)}
   .divcard .top .k{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;opacity:.9}
   .divcard .top h3{font-family:var(--serif);font-weight:500;font-size:23px;margin:8px 0 0;color:#fff}
   .divcard .bd{padding:22px 26px 26px;display:flex;flex-direction:column;flex:1}
@@ -168,7 +168,7 @@
   .foot-col h5{margin:0 0 10px;color:#fff;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
   .foot-col a,.foot-col span{display:block;color:#c9c0bb;margin-bottom:7px;font-size:14px}
   .foot-col a:hover{color:#fff}
-  .foot-legal{border-top:1px solid rgba(255,255,255,.12);margin-top:34px;padding-top:20px;font-size:12px;color:#8f8681;line-height:1.6}
+  .foot-legal{border-top:1px solid rgba(255,255,255,.12);margin-top:34px;padding-top:20px;font-size:12px;color:#a49a95;line-height:1.6}
 
   /* Leadership profile */
   .profile{display:grid;grid-template-columns:300px 1fr;gap:44px;align-items:start;margin-top:44px;background:#fff;border:.5px solid var(--line);border-radius:18px;padding:34px 36px}
@@ -186,6 +186,27 @@
   .highlights li::before{content:'';position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:2px;background:linear-gradient(120deg,#EC0016,#F4A39A)}
   .more-team h3.mt{font-family:var(--serif);font-weight:500;font-size:20px;color:var(--espresso);margin:54px 0 0}
   @media(max-width:820px){.profile{grid-template-columns:1fr;gap:24px}.highlights{grid-template-columns:1fr}}
+
+  /* --- launch review additions (UX/Creative) --- */
+  :where(section,[id]){scroll-margin-top:92px}
+  a:focus-visible,.btn:focus-visible,summary:focus-visible,.nav-toggle:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--deep);outline-offset:2px;border-radius:6px}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  .navtoggle-cb{display:none}
+  .nav-toggle{display:none;font-size:22px;line-height:1;cursor:pointer;color:var(--espresso);user-select:none;padding:4px 8px}
+  .hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.9fr);gap:48px;align-items:center}
+  .hero-art{position:relative}
+  .hero-art svg{width:100%;height:auto;display:block}
+  .foot-legal a{color:#c9c0bb;text-decoration:underline}
+  .foot-legal a:hover{color:#fff}
+  .foot-legal-links{margin:0 0 12px;font-size:12.5px;letter-spacing:.02em}
+  @media(max-width:900px){.hero .wrap{grid-template-columns:1fr}.hero-art{display:none}}
+  @media(max-width:1040px){
+    .nav-toggle{display:inline-flex;order:9}
+    .nav-right{order:8}
+    .nav-links{order:10;display:none;position:absolute;top:76px;left:0;right:0;flex-direction:column;gap:0;background:var(--ivory);border-bottom:.5px solid var(--line);padding:6px 32px 16px;box-shadow:0 18px 30px -20px rgba(43,36,34,.4)}
+    .navtoggle-cb:checked ~ .nav-links{display:flex}
+    .nav-links a{padding:13px 0;border-top:.5px solid var(--line);width:100%}
+  }
 </style>
 </head>
 <body>
@@ -202,9 +223,11 @@
         <rect x="192.39" y="9.91" width="5.61" height="5.61" fill="#EC0016"/><rect x="194.68" y="10.97" width="1.04" height="3.51" fill="#fff"/><rect x="193.45" y="12.20" width="3.51" height="1.04" fill="#fff"/>
         <text x="132" y="48" text-anchor="middle" font-family="'Hanken Grotesk',sans-serif" font-size="8.5" font-weight="500" letter-spacing="3" fill="#5A4F4C">HELVETIC GROUP</text>
         <line x1="67" y1="53" x2="198" y2="53" stroke="#B5121B" stroke-opacity="0.5" stroke-width="0.7"/>
-        <text x="132" y="63" text-anchor="middle" font-family="'Hanken Grotesk',sans-serif" font-size="7" letter-spacing="0.5" fill="#6E635F">Hospitality · Real Estate · AI Advisory</text>
+        <text x="132" y="63" text-anchor="middle" font-family="'Hanken Grotesk',sans-serif" font-size="7" letter-spacing="0.5" fill="#6E635F">Hospitality · Real Estate · AI &amp; Advisory</text>
       </svg>
     </a>
+    <input type="checkbox" id="navtoggle" class="navtoggle-cb">
+    <label for="navtoggle" class="nav-toggle" role="button" aria-label="Open menu" tabindex="0">☰</label>
     <nav class="nav-links">
       <a href="#trust">The Group</a>
       <a href="#model">How We Work</a>
@@ -222,12 +245,25 @@
 <!-- ============ HERO ============ -->
 <section class="hero">
   <div class="wrap">
-    <p class="eyebrow">Swiss Riviera · Since 2021</p>
-    <h1>Swiss Precision, Human Warmth.</h1>
-    <p class="lead">TriNova Helvetic Group manages premium Swiss Riviera property and hospitality operations with data‑driven precision — for the owners, partners and banks who rely on us.</p>
-    <div class="hero-actions">
-      <a class="btn btn-strong" href="#contact">Speak With Our Team</a>
-      <a class="btn btn-secondary" href="#divisions">Explore Our Divisions</a>
+    <div class="hero-copy">
+      <p class="eyebrow">Swiss Riviera · Since 2021</p>
+      <h1>Swiss Precision, Human Warmth.</h1>
+      <p class="lead">TriNova Helvetic Group runs Swiss Riviera property and hospitality with data‑driven precision — for the owners and partners who rely on us.</p>
+      <div class="hero-actions">
+        <a class="btn btn-strong" href="#contact">Speak With Our Team</a>
+        <a class="btn btn-secondary" href="#divisions">Explore Our Divisions</a>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 460 380" role="img" aria-label="TriNova — Swiss Riviera peaks over Lake Geneva">
+        <defs><linearGradient id="hglow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EC0016" stop-opacity=".10"/><stop offset="1" stop-color="#EC0016" stop-opacity="0"/></linearGradient></defs>
+        <circle cx="330" cy="98" r="66" fill="url(#hglow)"/>
+        <polyline points="20,250 90,150 150,215 220,90 300,200 360,140 440,215" fill="none" stroke="#B5121B" stroke-opacity=".5" stroke-width="2.5" stroke-linejoin="round"/>
+        <polyline points="20,286 110,206 180,260 260,172 340,250 400,206 440,250" fill="none" stroke="#EC0016" stroke-opacity=".26" stroke-width="2" stroke-linejoin="round"/>
+        <line x1="220" y1="90" x2="220" y2="64" stroke="#B5121B" stroke-width="2"/><rect x="220" y="64" width="16" height="11" fill="#EC0016"/><rect x="226.7" y="66.3" width="2.6" height="6.4" fill="#fff"/><rect x="223.5" y="69.4" width="9" height="2.6" fill="#fff"/>
+        <line x1="10" y1="312" x2="450" y2="312" stroke="#C9C0B6" stroke-width="1.2"/>
+        <g stroke="#B5121B" stroke-opacity=".16" stroke-width="1.5"><line x1="40" y1="330" x2="180" y2="330"/><line x1="250" y1="344" x2="410" y2="344"/><line x1="120" y1="358" x2="340" y2="358"/></g>
+      </svg>
     </div>
   </div>
 </section>
@@ -235,13 +271,13 @@
 <!-- ============ TRUST (banks first) ============ -->
 <section id="trust">
   <div class="wrap">
-    <p class="eyebrow">Why Partners Rely On Us</p>
-    <h2 class="section-title">A Trusted Operating Partner.</h2>
-    <p class="lead">TriNova is the operating and management company behind premium Swiss Riviera real estate and hospitality — the disciplined hand that turns owned property into reliable, well‑run and well‑reported operations. It is built to give owners, partners and the banks that finance them one thing above all: confidence in the details.</p>
+    <p class="eyebrow">How We Work With Owners &amp; Partners</p>
+    <h2 class="section-title">A Disciplined Operating Partner.</h2>
+    <p class="lead">TriNova is the operating and management company behind well‑run Swiss Riviera real estate and hospitality — the disciplined hand that turns owned property into reliable, well‑run and well‑reported operations. It is built to give owners and their financing partners one thing above all: confidence in the details.</p>
     <div class="facts">
       <div class="fact"><div class="n">01</div><h3>Operating Since 2021</h3><p>A continuous, multi‑year track record running premium Swiss Riviera property and hospitality for Swiss and international clients.</p></div>
-      <div class="fact"><div class="n">02</div><h3>Precise, Transparent Reporting</h3><p>Every property, payment and projection accounted for — financials and governance that stand up to scrutiny.</p></div>
-      <div class="fact"><div class="n">03</div><h3>Reliable Rental Performance</h3><p>Properties re‑let across corporate, event and furnished short‑ and medium‑term channels for steady, diversified income.</p></div>
+      <div class="fact"><div class="n">02</div><h3>Precise, Transparent Reporting</h3><p>Every property, payment and projection accounted for — clear, well‑documented financials and governance.</p></div>
+      <div class="fact"><div class="n">03</div><h3>Diversified Re‑Letting</h3><p>Properties re‑let across corporate, event and furnished short‑ and medium‑term channels for diversified occupancy — income varies with market conditions.</p></div>
       <div class="fact"><div class="n">04</div><h3>Data‑Driven &amp; Digital‑First</h3><p>Lean, automated operations that hold costs down and standards up — the same discipline across every asset.</p></div>
     </div>
   </div>
@@ -252,7 +288,7 @@
   <div class="wrap">
     <p class="eyebrow">How We Work</p>
     <h2 class="section-title">A Partnership, By Design.</h2>
-    <p class="lead">TriNova is not a conventional company with a payroll — it is a partnership. We bring together independent professionals, each an established sole proprietor running their own practice, who choose to work together under one shared Swiss standard. The model is deliberate: it lets us pair an on‑the‑ground Swiss presence on the Riviera with dedicated near‑shore capability hubs, and it places genuine specialists — not job descriptions — at the heart of every engagement.</p>
+    <p class="lead">TriNova is not a conventional company with a payroll — it is a partnership. We bring together independent professionals, each an established sole proprietor running their own practice, who choose to work together under one shared Swiss standard. Each specialist works on their own account, chooses their own methods and equipment, is free to serve other clients, and is engaged under an independent services agreement — not a contract of employment. The model is deliberate: it lets us pair an on‑the‑ground Swiss presence on the Riviera with dedicated near‑shore capability hubs, and it places genuine specialists — not job descriptions — at the heart of every engagement.</p>
     <p class="lead">Each partner contributes their own expertise and remains their own principal; TriNova provides the standards, the platform and the shared brand that hold the work together. Between owners and their banks on one side, and guests, tenants and partners on the other, TriNova is the precise, accountable operator in the middle — combining Swiss precision with global reach, and increasingly powered by its own applied‑AI practice.</p>
   </div>
 </section>
@@ -271,19 +307,19 @@
           <ul class="svc">
             <li>Short‑Term Furnished Rental</li>
             <li>Medium‑Term Furnished Rental</li>
-            <li>Corporate &amp; B2B Stays</li>
+            <li>Corporate &amp; Business Stays</li>
             <li>Events</li>
-            <li>Trainings &amp; Residencies</li>
+            <li>Training &amp; Residencies</li>
             <li>Guest Experience &amp; Housekeeping</li>
           </ul>
-          <a class="divcta" href="#contact">Discuss Our Hospitality Services →</a>
+          <a class="divcta" href="#contact">Discuss Hospitality →</a>
         </div>
       </div>
 
       <div class="divcard re">
         <div class="top"><div class="k">TriNova Real Estate &amp; Business Services</div><h3>Property &amp; Process, Precisely Managed</h3></div>
         <div class="bd">
-          <p>The management and financial backbone behind the portfolio — run to an auditable standard.</p>
+          <p>The management and financial backbone behind every property we manage — run to a documented, traceable standard.</p>
           <ul class="svc">
             <li>Property &amp; Tenancy Management</li>
             <li>Leasing &amp; Re‑Letting</li>
@@ -299,7 +335,7 @@
       <div class="divcard ai">
         <div class="top"><div class="k">TriNova AI &amp; Advisory</div><h3>The Intelligence Behind It All</h3></div>
         <div class="bd">
-          <p>The engine of our data‑driven, digital‑first operations — proven first inside the group, now offered to clients.</p>
+          <p>The engine behind our operations — applied AI and automation built for property, finance and hospitality.</p>
           <ul class="svc">
             <li>Applied AI &amp; Automation</li>
             <li>Operations &amp; Data Strategy</li>
@@ -328,8 +364,8 @@
       <svg class="scene" viewBox="0 0 800 480" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Château de Chillon on Lake Geneva at Montreux, with the Alps beyond">
         <defs>
           <linearGradient id="skyO" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FCF4ED"/><stop offset=".6" stop-color="#F7DFD4"/><stop offset="1" stop-color="#F1CFC6"/></linearGradient>
-          <linearGradient id="lakeO" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C4B2B7"/><stop offset="1" stop-color="#E6D0C6"/></linearGradient>
-          <linearGradient id="alpFar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#BCA9B4"/><stop offset="1" stop-color="#CDBBBB"/></linearGradient>
+          <linearGradient id="lakeO" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9FB2B8"/><stop offset="1" stop-color="#D8DED9"/></linearGradient>
+          <linearGradient id="alpFar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B4B9C4"/><stop offset="1" stop-color="#CDBBBB"/></linearGradient>
           <linearGradient id="alpNear" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C29A82"/><stop offset="1" stop-color="#D8B79F"/></linearGradient>
         </defs>
         <rect width="800" height="480" fill="url(#skyO)"/>
@@ -340,7 +376,7 @@
         <polygon points="660,128 644,156 678,156" fill="#FCF6F2" opacity=".6"/>
         <polygon points="0,258 150,214 330,258 520,222 800,262 800,320 0,320" fill="url(#alpNear)" opacity=".9"/>
         <rect x="0" y="300" width="800" height="180" fill="url(#lakeO)"/>
-        <g opacity=".16" transform="translate(0,600) scale(1,-1)"><g fill="#8A5340"><rect x="470" y="238" width="30" height="62"/><rect x="602" y="230" width="40" height="70"/><rect x="556" y="200" width="30" height="100"/><rect x="512" y="220" width="70" height="80"/></g></g>
+        <g opacity=".22" transform="translate(0,600) scale(1,-1)"><g fill="#8A5340"><rect x="470" y="238" width="30" height="62"/><rect x="602" y="230" width="40" height="70"/><rect x="556" y="200" width="30" height="100"/><rect x="512" y="220" width="70" height="80"/></g></g>
         <g>
           <rect x="512" y="220" width="72" height="82" fill="#C3AB90"/>
           <rect x="470" y="238" width="30" height="64" fill="#B89C82"/>
@@ -356,7 +392,7 @@
         </g>
         <ellipse cx="120" cy="308" rx="150" ry="14" fill="#B79A83" opacity=".6"/>
         <g fill="#7C5A44" opacity=".85"><ellipse cx="70" cy="286" rx="12" ry="30"/><ellipse cx="104" cy="292" rx="10" ry="24"/></g>
-        <g stroke="#FFF" stroke-opacity=".25" stroke-width="2"><line x1="60" y1="340" x2="180" y2="340"/><line x1="260" y1="366" x2="420" y2="366"/><line x1="520" y1="350" x2="640" y2="350"/></g>
+        <g stroke="#FFF" stroke-opacity=".28" stroke-width="2"><line x1="60" y1="336" x2="200" y2="336"/><line x1="250" y1="360" x2="430" y2="360"/><line x1="120" y1="384" x2="360" y2="384"/><line x1="500" y1="348" x2="650" y2="348"/><line x1="470" y1="374" x2="700" y2="374"/></g>
       </svg>
       <span class="cap">Montreux · Lake Geneva Riviera</span>
     </div>
@@ -369,7 +405,7 @@
     <div class="art ai">
       <svg class="scene" viewBox="0 0 800 480" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Applied AI and automation — an abstract network of connected nodes">
         <defs>
-          <linearGradient id="aibg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5E4636"/><stop offset="1" stop-color="#9C7C63"/></linearGradient>
+          <linearGradient id="aibg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2B2422"/><stop offset="1" stop-color="#6E2A28"/></linearGradient>
           <radialGradient id="aiglow" cx="46%" cy="40%" r="62%"><stop offset="0" stop-color="#F4A39A" stop-opacity=".38"/><stop offset="1" stop-color="#F4A39A" stop-opacity="0"/></radialGradient>
         </defs>
         <rect width="800" height="480" fill="url(#aibg)"/>
@@ -417,7 +453,7 @@
         </div>
         <ul class="highlights">
           <li>Founder &amp; Executive Leader</li>
-          <li>14+ Years International HORECA Experience</li>
+          <li>14+ Years In Hospitality, Restaurants &amp; Catering</li>
           <li>Hospitality &amp; Real Estate Development</li>
           <li>International Operations Across Four Countries</li>
           <li>Strategic &amp; Operational Planning</li>
@@ -478,7 +514,7 @@
   <div class="wrap">
     <p class="eyebrow">Careers</p>
     <h2 class="section-title">Build With A Precise, Global Team.</h2>
-    <p class="lead">TriNova grows by partnership, not headcount. We collaborate with independent professionals — each an established sole proprietor with their own practice — who deliver remotely to a Swiss standard and share in the ambition of the group. If you run your own professional practice and take pride in getting the details right, we'd like to work with you. Current openings for independent partners:</p>
+    <p class="lead">TriNova grows by partnership, not headcount. We collaborate with independent professionals — each an established sole proprietor with their own practice — who deliver remotely to a Swiss standard and share in the ambition of the Group. If you run your own professional practice and take pride in getting the details right, we'd like to work with you. Current openings for independent partners:</p>
     <div class="jobs">
       <div class="job">
         <span class="tag">Customer Excellence &amp; AI</span>
@@ -518,7 +554,7 @@
             <option>Real Estate &amp; Business Services</option>
             <option>AI &amp; Advisory</option>
             <option>Careers / Open Application</option>
-            <option>Banks &amp; Financing Partners</option>
+            <option>Financing &amp; Institutional Enquiries</option>
           </select>
         </div>
         <div class="field"><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
@@ -526,7 +562,7 @@
         <div class="cf-turnstile" data-sitekey="TURNSTILE_SITEKEY_PLACEHOLDER" style="margin:8px 0 14px"></div>
         <button type="submit" class="btn btn-strong">Send Enquiry</button>
         <p id="formStatus" class="form-note" role="status" aria-live="polite"></p>
-        <p class="form-note">Your message is sent securely to info@trinovahelveticgroup.ch and we never share your details.</p>
+        <p class="form-note">Your message goes to TriNova Helvetic Group (info@trinovahelveticgroup.ch) and is used only to respond to your enquiry. Spam protection by Cloudflare Turnstile. See our <a href="/privacy.html">Privacy Notice</a>.</p>
       </form>
       <div class="cinfo">
         <p class="label">Base</p>
@@ -558,7 +594,7 @@
             <rect x="192.39" y="9.91" width="5.61" height="5.61" fill="#EC0016"/><rect x="194.68" y="10.97" width="1.04" height="3.51" fill="#fff"/><rect x="193.45" y="12.20" width="3.51" height="1.04" fill="#fff"/>
             <text x="132" y="48" text-anchor="middle" font-family="'Hanken Grotesk',sans-serif" font-size="8.5" font-weight="500" letter-spacing="3" fill="#c9c0bb">HELVETIC GROUP</text>
             <line x1="67" y1="53" x2="198" y2="53" stroke="#EC0016" stroke-opacity="0.6" stroke-width="0.7"/>
-            <text x="132" y="63" text-anchor="middle" font-family="'Hanken Grotesk',sans-serif" font-size="7" letter-spacing="0.5" fill="#a99f9a">Hospitality · Real Estate · AI Advisory</text>
+            <text x="132" y="63" text-anchor="middle" font-family="'Hanken Grotesk',sans-serif" font-size="7" letter-spacing="0.5" fill="#a99f9a">Hospitality · Real Estate · AI &amp; Advisory</text>
           </svg>
         </a>
         <p class="endorse">The operating partner behind premium Swiss Riviera property and hospitality — Swiss presence, near‑shore capability.</p>
@@ -570,6 +606,7 @@
       </div>
     </div>
     <div class="foot-legal">
+      <p class="foot-legal-links"><a href="/privacy.html">Privacy Notice</a> · <a href="/impressum.html">Impressum</a></p>
       © <span id="year"></span> TriNova Helvetic Group. Operating on the Swiss Riviera.<br>
       TriNova works through a partnership of independent, self‑employed professionals — each operating as their own principal under an independent service agreement, not a contract of employment. This website is for general information only and does not constitute an offer or solicitation. Registered legal entity: TriNova Helvetic Group Kft. — full registration details available on request.
     </div>
@@ -592,8 +629,8 @@
     try{
       var r=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
       if(r.ok){ f.reset(); if(window.turnstile) turnstile.reset(); s.style.color='var(--deep)'; s.textContent='Thank you — your enquiry has been sent. We will be in touch shortly.'; }
-      else { var j={}; try{j=await r.json();}catch(_){} s.style.color='#B5121B'; s.textContent=(j&&j.error)||'Sorry, something went wrong. Please email info@trinovahelveticgroup.ch.'; }
-    }catch(err){ s.style.color='#B5121B'; s.textContent='Sorry, something went wrong. Please email info@trinovahelveticgroup.ch.'; }
+      else { var j={}; try{j=await r.json();}catch(_){} s.style.color='#B5121B'; s.innerHTML=(j&&j.error)||'Sorry, something went wrong — please email <a href="mailto:info@trinovahelveticgroup.ch">info@trinovahelveticgroup.ch</a>.'; }
+    }catch(err){ s.style.color='#B5121B'; s.innerHTML='Sorry, something went wrong — please email <a href="mailto:info@trinovahelveticgroup.ch">info@trinovahelveticgroup.ch</a>.'; }
   });
 })();
 </script>
