@@ -71,6 +71,8 @@ module.exports = async function (context, req) {
     let atts = [];
     const rawAtts = Array.isArray(b.attachments) ? b.attachments.slice(0, 3) : (b.attachment ? [b.attachment] : []);
     for (const ra of rawAtts) { const c = cleanAttachment(ra); if (c && c.error) return fail(415, c.error); if (c) atts.push(c); }
+    const totalBytes = atts.reduce((t, a) => t + a.bytes, 0);
+    if (totalBytes > 30 * 1024 * 1024) return fail(413, "Attachments are too large in total — please keep the combined size under 30 MB, or share a link.");
     const token = await graphToken(context); if (!token) return fail(500, "The form could not be submitted right now. Please email info@trinovahelveticgroup.ch.");
     const sender = process.env.MAIL_SENDER || "info@trinovahelveticgroup.ch";
     const to = process.env.MAIL_TO || sender;
