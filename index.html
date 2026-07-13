@@ -207,6 +207,15 @@
     .navtoggle-cb:checked ~ .nav-links{display:flex}
     .nav-links a{padding:13px 0;border-top:.5px solid var(--line);width:100%}
   }
+  /* --- careers application form --- */
+  .apply-wrap{margin-top:44px;background:#fff;border:.5px solid var(--line);border-radius:16px;padding:30px 30px 34px}
+  .apply-wrap h3.mt{margin:0 0 6px}
+  .apply-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 22px;margin-top:20px}
+  .apply-grid .span2{grid-column:1 / -1}
+  .field .opt{font-weight:400;color:var(--grey);font-size:12px}
+  .consent{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:var(--body);margin:4px 0 16px;max-width:70ch}
+  .consent input{margin-top:3px;flex-shrink:0}
+  @media(max-width:640px){.apply-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -521,17 +530,50 @@
         <h3>Key Account — Customer Excellence &amp; AI Enablement Specialist</h3>
         <div class="meta">Near‑Shore Hub · Madagascar · Independent Sole Proprietor · Remote</div>
         <p>Represent a strategic key account end to end — guest relations, OTA listings and housekeeping coordination — supported by everyday AI tools (no coding). French &amp; English at C1/C2.</p>
-        <a href="https://stijnfoundation.sharepoint.com/:w:/g/IQDO2N93yyWCQ4-n_ey7zlkIASuIx9RzAj1tfuJObuawmvQ?e=lMCh1j" target="_blank" rel="noopener">View Role &amp; Apply →</a>
+        <a href="https://stijnfoundation.sharepoint.com/:w:/g/IQDO2N93yyWCQ4-n_ey7zlkIASuIx9RzAj1tfuJObuawmvQ?e=lMCh1j" target="_blank" rel="noopener">View Role Details →</a>
       </div>
       <div class="job">
         <span class="tag">Customer Excellence &amp; AI</span>
         <h3>Key Account — Customer Excellence &amp; AI Enablement Specialist</h3>
         <div class="meta">Near‑Shore Hub · Morocco · Independent Sole Proprietor · Remote</div>
         <p>Represent a strategic key account end to end — guest relations, OTA listings and housekeeping coordination — supported by everyday AI tools (no coding). French &amp; English at C1/C2.</p>
-        <a href="https://stijnfoundation.sharepoint.com/:w:/g/IQDZ7k9bNm-wSrppja24vOkFAeDZmUr9VA3gchLyldhnD_0?e=dkefsx" target="_blank" rel="noopener">View Role &amp; Apply →</a>
+        <a href="https://stijnfoundation.sharepoint.com/:w:/g/IQDZ7k9bNm-wSrppja24vOkFAeDZmUr9VA3gchLyldhnD_0?e=dkefsx" target="_blank" rel="noopener">View Role Details →</a>
       </div>
     </div>
     <div class="openapp">Run Your Own Practice? We Collaborate With Independent Specialists Worldwide, Year‑Round. <a href="#contact">Introduce Your Practice →</a></div>
+    <div id="apply" class="apply-wrap">
+      <h3 class="mt serif">Apply To Join TriNova</h3>
+      <p class="lead">Engagements are on an independent, self‑employed basis. Tell us about yourself and attach your CV — a cover letter is welcome. Fields marked * are required.</p>
+      <form id="applyForm" novalidate>
+        <div class="apply-grid">
+          <div class="field"><label for="ap-name">Full Name *</label><input type="text" id="ap-name" name="name" required></div>
+          <div class="field"><label for="ap-email">Email *</label><input type="email" id="ap-email" name="email" required></div>
+          <div class="field"><label for="ap-phone">Phone</label><input type="tel" id="ap-phone" name="phone" placeholder="+.."></div>
+          <div class="field"><label for="ap-location">Location / Country</label><input type="text" id="ap-location" name="location"></div>
+          <div class="field"><label for="ap-role">Role Applying For *</label>
+            <select id="ap-role" name="role" required>
+              <option value="">Select A Role…</option>
+              <option>Customer Excellence &amp; AI Enablement Specialist — Madagascar</option>
+              <option>Customer Excellence &amp; AI Enablement Specialist — Morocco</option>
+              <option>Open / Speculative Application</option>
+            </select>
+          </div>
+          <div class="field"><label for="ap-exp">Years Of Experience</label><input type="text" id="ap-exp" name="experience"></div>
+          <div class="field"><label for="ap-langs">Languages</label><input type="text" id="ap-langs" name="languages" placeholder="e.g. French (C2), English (C1), Arabic"></div>
+          <div class="field"><label for="ap-avail">Earliest Availability</label><input type="text" id="ap-avail" name="availability" placeholder="e.g. Immediately / 1 month"></div>
+          <div class="field span2"><label for="ap-link">LinkedIn Or Portfolio <span class="opt">(Optional)</span></label><input type="url" id="ap-link" name="link" placeholder="https://"></div>
+          <div class="field span2"><label for="ap-msg">Cover Note <span class="opt">(Optional)</span></label><textarea id="ap-msg" name="message"></textarea></div>
+          <div class="field"><label for="ap-cv">CV / Résumé * <span class="opt">(PDF Or Word, Up To 50 MB)</span></label><input type="file" id="ap-cv" name="cv" accept=".pdf,.doc,.docx" required></div>
+          <div class="field"><label for="ap-cl">Cover Letter <span class="opt">(Optional — PDF Or Word)</span></label><input type="file" id="ap-cl" name="coverLetter" accept=".pdf,.doc,.docx"></div>
+        </div>
+        <label class="consent"><input type="checkbox" id="ap-consent" name="consent" required> I consent to TriNova Helvetic Group processing my details and documents for recruitment purposes, as described in the <a href="/privacy.html">Privacy Notice</a>. *</label>
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+        <div class="cf-turnstile" data-sitekey="TURNSTILE_SITEKEY_PLACEHOLDER" style="margin:8px 0 14px"></div>
+        <button type="submit" class="btn btn-strong">Submit Application</button>
+        <p id="applyStatus" class="form-note" role="status" aria-live="polite"></p>
+        <p class="form-note">Your application and documents are sent to TriNova Helvetic Group and used only for recruitment. See our <a href="/privacy.html">Privacy Notice</a>.</p>
+      </form>
+    </div>
   </div>
 </section>
 
@@ -559,7 +601,7 @@
         </div>
         <div class="field"><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
         <div class="field"><label for="link">Link <span style="font-weight:400;color:var(--grey)">(Optional — Property Listing, Portfolio Or LinkedIn)</span></label><input type="url" id="link" name="link" placeholder="https://"></div>
-        <div class="field"><label for="attachment">Attachment <span style="font-weight:400;color:var(--grey)">(Optional — PDF, Image Or Document, Up To 8 MB)</span></label><input type="file" id="attachment" name="attachment" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.webp,.txt,.xlsx,.pptx"></div>
+        <div class="field"><label for="attachment">Attachment <span style="font-weight:400;color:var(--grey)">(Optional — PDF, Image Or Document, Up To 50 MB)</span></label><input type="file" id="attachment" name="attachment" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.webp,.txt,.xlsx,.pptx"></div>
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
         <div class="cf-turnstile" data-sitekey="TURNSTILE_SITEKEY_PLACEHOLDER" style="margin:8px 0 14px"></div>
         <button type="submit" class="btn btn-strong">Send Enquiry</button>
@@ -615,32 +657,6 @@
   </div>
 </footer>
 
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
-<script>
-(function(){
-  var f=document.getElementById('contactForm'), s=document.getElementById('formStatus');
-  if(!f) return;
-  f.addEventListener('submit', async function(e){
-    e.preventDefault();
-    var el=f.elements;
-    if(!el['name'].value||!el['email'].value||!el['message'].value){ s.style.color='#B5121B'; s.textContent='Please complete your name, email and message.'; return; }
-    s.style.color='var(--grey)'; s.textContent='Sending…';
-    var att=null, fi=el['attachment'];
-    if(fi && fi.files && fi.files[0]){
-      var file=fi.files[0];
-      if(file.size>8*1024*1024){ s.style.color='#B5121B'; s.textContent='Attachment is too large — please keep it under 8 MB.'; return; }
-      try{ att=await new Promise(function(res,rej){ var rd=new FileReader(); rd.onload=function(){ res({ filename:file.name, contentType:file.type||'application/octet-stream', size:file.size, contentBase64:String(rd.result).split(',')[1]||'' }); }; rd.onerror=rej; rd.readAsDataURL(file); }); }catch(_){ att=null; }
-    }
-    var payload={ name:el['name'].value, email:el['email'].value, organisation:el['organisation'].value,
-      division:el['division'].value, message:el['message'].value, link:el['link'].value, attachment:att,
-      _gotcha:el['_gotcha'].value, token:(window.turnstile&&turnstile.getResponse())||'' };
-    try{
-      var r=await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
-      if(r.ok){ f.reset(); if(window.turnstile) turnstile.reset(); s.style.color='var(--deep)'; s.textContent='Thank you — your enquiry has been sent. We will be in touch shortly.'; }
-      else { var j={}; try{j=await r.json();}catch(_){} s.style.color='#B5121B'; s.innerHTML=(j&&j.error)||'Sorry, something went wrong — please email <a href="mailto:info@trinovahelveticgroup.ch">info@trinovahelveticgroup.ch</a>.'; }
-    }catch(err){ s.style.color='#B5121B'; s.innerHTML='Sorry, something went wrong — please email <a href="mailto:info@trinovahelveticgroup.ch">info@trinovahelveticgroup.ch</a>.'; }
-  });
-})();
-</script>
+<script src="/app.js" defer></script>
 </body>
 </html>

@@ -1,10 +1,18 @@
 {
-  "navigationFallback": { "rewrite": "/index.html" },
+  "navigationFallback": { "rewrite": "/index.html", "exclude": ["/app.js", "/favicon.svg", "/og-image.png", "/robots.txt", "/sitemap.xml", "/llms.txt", "/privacy.html", "/impressum.html", "/api/*"] },
   "responseOverrides": { "404": { "rewrite": "/index.html", "statusCode": 200 } },
   "globalHeaders": {
+    "Content-Security-Policy": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; upgrade-insecure-requests",
+    "Strict-Transport-Security": "max-age=63072000; includeSubDomains; preload",
     "X-Content-Type-Options": "nosniff",
     "Referrer-Policy": "strict-origin-when-cross-origin",
-    "X-Frame-Options": "SAMEORIGIN"
+    "X-Frame-Options": "DENY",
+    "Permissions-Policy": "geolocation=(), microphone=(), camera=(), payment=(), usb=(), interest-cohort=()",
+    "Cross-Origin-Opener-Policy": "same-origin"
   },
-  "mimeTypes": { ".webmanifest": "application/manifest+json" }
+  "mimeTypes": { ".webmanifest": "application/manifest+json" },
+  "routes": [
+    { "route": "/index.html", "headers": { "Cache-Control": "no-cache" } },
+    { "route": "/", "headers": { "Cache-Control": "no-cache" } }
+  ]
 }
