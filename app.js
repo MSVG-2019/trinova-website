@@ -1,5 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
   var y = document.getElementById('year'); if (y) y.textContent = new Date().getFullYear();
+  // Pre-fill the contact form when arriving from Partner Connect (/?topic=partner-access#contact)
+  try {
+    var tp = new URLSearchParams(location.search).get('topic');
+    if (tp === 'partner-access') {
+      var dv = document.getElementById('division');
+      if (dv) { for (var i = 0; i < dv.options.length; i++) { if (/Partner Connect/i.test(dv.options[i].text)) { dv.selectedIndex = i; break; } } }
+      var mg = document.getElementById('message'); if (mg && !mg.value) mg.value = 'I would like to request Partner Connect access.';
+    }
+  } catch (e) {}
   var MAX = 25 * 1024 * 1024, TOTAL = 30 * 1024 * 1024;
   function readFile(file) {
     return new Promise(function (res, rej) {
