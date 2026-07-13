@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', function () {
       var mg = document.getElementById('message'); if (mg && !mg.value) mg.value = 'I would like to request Partner Connect access.';
     }
   } catch (e) {}
+  // Mobile nav: keyboard-operable toggle + aria-expanded
+  (function(){ var cb=document.getElementById('navtoggle'), lbl=document.querySelector('.nav-toggle'); if(!cb||!lbl) return; lbl.setAttribute('aria-expanded','false');
+    lbl.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '||e.key==='Spacebar'){ e.preventDefault(); cb.checked=!cb.checked; lbl.setAttribute('aria-expanded',cb.checked?'true':'false'); } });
+    cb.addEventListener('change',function(){ lbl.setAttribute('aria-expanded',cb.checked?'true':'false'); }); })();
   var MAX = 25 * 1024 * 1024, TOTAL = 30 * 1024 * 1024;
   function readFile(file) {
     return new Promise(function (res, rej) {
