@@ -1,0 +1,6 @@
+{
+  "name": "trinova-website-api",
+  "version": "1.0.0",
+  "description": "Contact + application form handlers for trinovahelveticgroup.ch (Turnstile + Microsoft Graph sendMail).",
+  "engines": { "node": ">=18" }
+}
