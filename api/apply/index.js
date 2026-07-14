@@ -1,7 +1,7 @@
 // TriNova Helvetic Group — partner application handler (independent-partner engagements).
 // Reuses the hardened helpers from the contact function. Emails the application +
 // CV (+ cover letter) to careers/info@. Not an employment application.
-const { cleanAttachment, sendMessage, graphToken, line, clip, validEmail } = require("../contact/index.js").helpers;
+const { cleanAttachment, sendMessage, graphToken, line, clip, validEmail } = require("../shared.js");
 const H = { "Content-Type": "application/json" };
 module.exports = async function (context, req) {
   const fail = (code, error) => { context.res = { status: code, headers: H, body: JSON.stringify({ error }) }; };
