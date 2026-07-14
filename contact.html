@@ -56,9 +56,9 @@ a:focus-visible,button:focus-visible,input[type=file]:focus-visible{outline:2px 
   </div>
   <div class="card">
       <form id="contactForm" novalidate>
-        <div class="field"><label for="name">Name *</label><input type="text" id="name" name="name" required></div>
-        <div class="field"><label for="email">Email *</label><input type="email" id="email" name="email" required></div>
-        <div class="field"><label for="org">Organisation <span class="opt">(Optional)</span></label><input type="text" id="org" name="organisation"></div>
+        <div class="field"><label for="name">Name *</label><input type="text" id="name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="email">Email *</label><input type="email" id="email" name="email" autocomplete="email" required></div>
+        <div class="field"><label for="org">Organisation</label><input type="text" id="org" name="organisation"></div>
         <div class="field"><label for="division">How Can We Help?</label>
           <select id="division" name="division">
             <option>General Enquiry</option>
@@ -72,10 +72,10 @@ a:focus-visible,button:focus-visible,input[type=file]:focus-visible{outline:2px 
           </select>
         </div>
         <div class="field"><label for="message">Message *</label><textarea id="message" name="message" required></textarea></div>
-        <div class="field"><label for="link">Link <span class="opt">(Optional — Property Listing, Portfolio Or LinkedIn)</span></label><input type="url" id="link" name="link" placeholder="https://"></div>
-        <div class="field"><label for="attachment1">Attachment 1 <span class="opt">(Optional — PDF, Image Or Document · Up To 25 MB)</span></label><input type="file" id="attachment1" name="attachment1" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.webp,.txt,.xlsx,.pptx"></div>
-        <div class="field"><label for="attachment2">Attachment 2 <span class="opt">(Optional · Up To 25 MB)</span></label><input type="file" id="attachment2" name="attachment2" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.webp,.txt,.xlsx,.pptx"></div>
-        <div class="field"><label for="attachment3">Attachment 3 <span class="opt">(Optional · Up To 25 MB)</span></label><input type="file" id="attachment3" name="attachment3" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.webp,.txt,.xlsx,.pptx"></div>
+        <div class="field"><label for="link">Link <span class="opt">(Property Listing, Portfolio Or LinkedIn)</span></label><input type="url" id="link" name="link" placeholder="https://"></div>
+        <div class="field"><label for="attachment1">Attachment 1 <span class="opt">(PDF, Image Or Document · Up To 25 MB)</span></label><input type="file" id="attachment1" name="attachment1" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.webp,.txt,.xlsx,.pptx"></div>
+        <div class="field"><label for="attachment2">Attachment 2 <span class="opt">(Up To 25 MB)</span></label><input type="file" id="attachment2" name="attachment2" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.webp,.txt,.xlsx,.pptx"></div>
+        <div class="field"><label for="attachment3">Attachment 3 <span class="opt">(Up To 25 MB)</span></label><input type="file" id="attachment3" name="attachment3" accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.webp,.txt,.xlsx,.pptx"></div>
         <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
         <div class="cf-turnstile" data-sitekey="0x4AAAAAAD1VYDD303906vbo" style="margin:8px 0 6px"></div>
         <button type="submit" class="btn">Send Enquiry</button>
