@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!checkSizes(files, s)) return;
       s.style.color = '#655F5E'; s.textContent = 'Sending…';
       var atts = []; try { for (var k = 0; k < files.length; k++) atts.push(await readFile(files[k])); } catch (_) { atts = []; }
-      await postForm(f, s, '/api/contact', { name: el['name'].value, email: el['email'].value, organisation: el['organisation'].value, division: el['division'].value, message: el['message'].value, link: el['link'].value, attachments: atts, _gotcha: el['_gotcha'].value, token: tsToken(f) }, 'Thank you — your enquiry has been sent. We will be in touch shortly.');
+      await postForm(f, s, '/api/enquiry', { name: el['name'].value, email: el['email'].value, organisation: el['organisation'].value, division: el['division'].value, message: el['message'].value, link: el['link'].value, attachments: atts, _gotcha: el['_gotcha'].value, token: tsToken(f) }, 'Thank you — your enquiry has been sent. We will be in touch shortly.');
     });
   })();
   // Partner application form (CV + cover letter)
