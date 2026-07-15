@@ -1,15 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Only pages whose <meta name="robots"> allows indexing are listed here.
+     noindex pages (apply, partner, references, privacy, impressum) are deliberately excluded —
+     submitting a noindex URL causes a "Submitted URL marked 'noindex'" error in Search Console.
+     Bump <lastmod> and re-request indexing in GSC whenever content changes materially. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.trinovahelveticgroup.ch/</loc>
-    <lastmod>2026-07-13</lastmod>
+    <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.trinovahelveticgroup.ch/references.html</loc>
+    <loc>https://www.trinovahelveticgroup.ch/role-madagascar.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.trinovahelveticgroup.ch/role-morocco.html</loc>
+    <lastmod>2026-07-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.trinovahelveticgroup.ch/contact.html</loc>
     <lastmod>2026-07-14</lastmod>
     <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <priority>0.5</priority>
   </url>
 </urlset>
