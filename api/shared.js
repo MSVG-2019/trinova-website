@@ -17,12 +17,52 @@ function cleanAttachment(a) {
   const fn = ((String(a.filename || "attachment").split(/[\\/]/).pop()) || "attachment").replace(/[^\w.\- ]+/g, "_").replace(/\.{2,}/g, ".").slice(0, 120) || "attachment";
   return { b64, bytes, ct, fn };
 }
-async function graphToken(context) {
+// --- Entra auth: certificate (preferred) with client-secret fallback -------------------
+// Set CERT_PRIVATE_KEY (PEM, "\n" escapes allowed) + CERT_THUMBPRINT (SHA-1 hex from Entra)
+// to authenticate with a certificate. If they are absent — or the cert path fails — we fall
+// back to CLIENT_SECRET, so the cutover is safe and instantly reversible.
+// Once the certificate is proven in production, remove CLIENT_SECRET from the app settings
+// (and delete the secret in Entra) to complete the migration.
+const crypto = require("crypto");
+const b64url = b => Buffer.from(b).toString("base64").replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+function certAssertion(tenant, clientId, pem, thumbprintHex) {
+  const x5t = b64url(Buffer.from(String(thumbprintHex).replace(/[^0-9a-fA-F]/g, ""), "hex"));
+  const now = Math.floor(Date.now() / 1000);
+  const header = { alg: "RS256", typ: "JWT", x5t };
+  const payload = {
+    aud: `https://login.microsoftonline.com/${tenant}/oauth2/v2.0/token`,
+    iss: clientId, sub: clientId, jti: crypto.randomUUID(), nbf: now - 60, exp: now + 540
+  };
+  const input = b64url(JSON.stringify(header)) + "." + b64url(JSON.stringify(payload));
+  const sig = crypto.createSign("RSA-SHA256").update(input).end().sign(pem);
+  return input + "." + b64url(sig);
+}
+async function requestToken(params) {
   const r = await fetch(`https://login.microsoftonline.com/${process.env.TENANT_ID}/oauth2/v2.0/token`, {
     method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({ client_id: process.env.CLIENT_ID || "", client_secret: process.env.CLIENT_SECRET || "", scope: "https://graph.microsoft.com/.default", grant_type: "client_credentials" })
+    body: new URLSearchParams(params)
   });
-  const j = await r.json(); return j.access_token || null;
+  return r.json();
+}
+async function graphToken(context) {
+  const clientId = process.env.CLIENT_ID || "";
+  const base = { client_id: clientId, scope: "https://graph.microsoft.com/.default", grant_type: "client_credentials" };
+  const pem = process.env.CERT_PRIVATE_KEY, thumb = process.env.CERT_THUMBPRINT;
+  if (pem && thumb) {
+    try {
+      const j = await requestToken(Object.assign({}, base, {
+        client_assertion_type: "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+        client_assertion: certAssertion(process.env.TENANT_ID, clientId, String(pem).replace(/\\n/g, "\n"), thumb)
+      }));
+      if (j.access_token) return j.access_token;
+      context.log("cert auth failed", j.error, j.error_description);
+    } catch (e) { context.log("cert assertion error", e && e.message); }
+    if (!process.env.CLIENT_SECRET) return null;
+    context.log("cert auth unavailable — falling back to client secret");
+  }
+  const j = await requestToken(Object.assign({}, base, { client_secret: process.env.CLIENT_SECRET || "" }));
+  if (!j.access_token) context.log("secret auth failed", j.error, j.error_description);
+  return j.access_token || null;
 }
 // Parse a Graph error response into a compact { code, detail } for diagnostics/logging.
 async function graphErr(res) {
