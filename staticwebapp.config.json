@@ -15,6 +15,16 @@
     { "route": "/index.html", "headers": { "Cache-Control": "no-cache" } },
     { "route": "/", "headers": { "Cache-Control": "no-cache" } },
     { "route": "/contact.html", "headers": { "Cache-Control": "no-cache" } },
-    { "route": "/apply.html", "headers": { "Cache-Control": "no-cache" } }
+    { "route": "/apply.html", "headers": { "Cache-Control": "no-cache" } },
+    { "route": "/role-madagascar.html", "headers": { "Cache-Control": "no-cache" } },
+    { "route": "/role-morocco.html", "headers": { "Cache-Control": "no-cache" } },
+    { "route": "/privacy.html", "headers": { "Cache-Control": "no-cache" } },
+    { "route": "/impressum.html", "headers": { "Cache-Control": "no-cache" } },
+    { "route": "/partner.html", "headers": { "Cache-Control": "no-cache" } },
+    { "route": "/references.html", "headers": { "Cache-Control": "no-cache" } },
+    { "route": "/llms.txt", "headers": { "Cache-Control": "no-cache" } },
+    { "route": "/sitemap.xml", "headers": { "Cache-Control": "no-cache" } },
+    { "route": "/robots.txt", "headers": { "Cache-Control": "no-cache" } },
+    { "route": "/app.js", "headers": { "Cache-Control": "no-cache" } }
   ]
 }
