@@ -33,8 +33,11 @@ module.exports = async function (context, req) {
     const to = process.env.CAREERS_TO || process.env.MAIL_TO || sender;
     const text = `Partner Application (independent engagement)\n\nEngagement: ${role}\nName: ${name}\nEmail: ${email}\nPhone: ${phone || "-"}\nLocation: ${location || "-"}\nYears of experience: ${experience || "-"}\nLanguages: ${languages || "-"}\nEarliest availability: ${availability || "-"}\nLink (LinkedIn/portfolio): ${linkUrl || "-"}\n\nAbout their practice:\n${about || "-"}\n\n— Submitted via the trinovahelveticgroup.ch partner-application form. The applicant confirmed consent to processing to assess a potential independent partnership.`;
     const baseMsg = { subject: `[Partner Application] — ${role} — ${name}`, body: { contentType: "Text", content: text }, toRecipients: [{ emailAddress: { address: to } }], replyTo: [{ emailAddress: { address: email, name } }] };
-    const ok = await sendMessage(context, token, sender, baseMsg, atts);
-    if (ok) { context.res = { status: 200, headers: H, body: JSON.stringify({ ok: true }) }; return; }
-    return fail(502, "Could not submit right now. Please email your application to info@trinovahelveticgroup.ch.");
+    const send = await sendMessage(context, token, sender, baseMsg, atts);
+    if (send && send.ok) { context.res = { status: 200, headers: H, body: JSON.stringify({ ok: true }) }; return; }
+    // TEMP DIAGNOSTIC (remove once send is confirmed): surface the exact Graph failure.
+    const diag = send && (send.stage || send.status || send.detail) ? { stage: send.stage, status: send.status, code: send.code, detail: send.detail } : undefined;
+    context.log("apply sendMail failed", JSON.stringify(diag || {}));
+    context.res = { status: 502, headers: H, body: JSON.stringify({ error: "Could not submit right now. Please email your application to info@trinovahelveticgroup.ch.", diag }) }; return;
   } catch (e) { context.log("apply error", e && e.message); return fail(500, "The application could not be submitted right now. Please email info@trinovahelveticgroup.ch."); }
 };
