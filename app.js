@@ -65,4 +65,61 @@ document.addEventListener('DOMContentLoaded', function () {
       await postForm(f, s, '/api/apply', { name: el['name'].value, email: el['email'].value, phone: el['phone'].value, location: el['location'].value, role: el['role'].value, experience: el['experience'].value, languages: el['languages'].value, availability: el['availability'].value, link: el['link'].value, message: el['message'].value, consent: el['consent'].checked, cv: cv, coverLetter: cl, _gotcha: el['_gotcha'].value, token: tsToken(f) }, 'Thank you — your application has been submitted. We will be in touch.');
     });
   })();
+  // Team profile cards → click to open a modal with a bigger photo + full profile (progressive enhancement)
+  (function () {
+    var cards = document.querySelectorAll('#team .team-grid .tcard');
+    if (!cards.length) return;
+    // Build the modal once
+    var overlay = document.createElement('div');
+    overlay.className = 'tmodal';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-hidden', 'true');
+    overlay.innerHTML = '<div class="tmodal-panel">' +
+      '<button type="button" class="tmodal-close" aria-label="Close profile">×</button>' +
+      '<div class="tmodal-head"><div class="tmodal-photo"><img alt=""></div><div><h3></h3><p class="role"></p></div></div>' +
+      '<div class="tmodal-body"></div></div>';
+    document.body.appendChild(overlay);
+    document.body.classList.add('tmodal-on');
+    var panel = overlay.querySelector('.tmodal-panel'),
+        mImg = overlay.querySelector('.tmodal-photo img'),
+        mName = overlay.querySelector('.tmodal-head h3'),
+        mRole = overlay.querySelector('.tmodal-head .role'),
+        mBody = overlay.querySelector('.tmodal-body'),
+        closeBtn = overlay.querySelector('.tmodal-close'),
+        lastFocus = null;
+    function open(data) {
+      mImg.src = data.img; mImg.alt = data.name;
+      mName.textContent = data.name; mRole.textContent = data.role;
+      mBody.innerHTML = '';
+      for (var i = 0; i < data.nodes.length; i++) mBody.appendChild(data.nodes[i].cloneNode(true));
+      lastFocus = document.activeElement;
+      overlay.classList.add('open'); overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden'; closeBtn.focus();
+    }
+    function close() {
+      overlay.classList.remove('open'); overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = ''; if (lastFocus) lastFocus.focus();
+    }
+    closeBtn.addEventListener('click', close);
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && overlay.classList.contains('open')) close(); });
+    cards.forEach(function (card) {
+      var av = card.querySelector('.avatar img'),
+          nm = card.querySelector('h3'),
+          rl = card.querySelector('.role'),
+          det = card.querySelector('details'),
+          ps = det ? det.querySelectorAll('p') : [];
+      if (!nm || !ps.length) return;
+      var data = { img: av ? av.src : '', name: nm.textContent, role: rl ? rl.textContent : '', nodes: ps };
+      var cue = document.createElement('p'); cue.className = 'viewcue'; cue.textContent = 'View Full Profile';
+      card.appendChild(cue);
+      card.classList.add('clickable');
+      card.setAttribute('role', 'button');
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('aria-label', 'View full profile: ' + data.name);
+      card.addEventListener('click', function () { open(data); });
+      card.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') { e.preventDefault(); open(data); } });
+    });
+  })();
 });
