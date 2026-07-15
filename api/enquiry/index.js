@@ -25,8 +25,11 @@ module.exports = async function (context, req) {
     const to = process.env.MAIL_TO || sender;
     const text = `Name: ${name}\nEmail: ${email}\nOrganisation: ${organisation || "-"}\nTopic: ${division || "-"}\nLink: ${link || "-"}\n\n${message}\n\n— Sent from the trinovahelveticgroup.ch contact form`;
     const baseMsg = { subject: `[Website Enquiry] — ${name}`, body: { contentType: "Text", content: text }, toRecipients: [{ emailAddress: { address: to } }], replyTo: [{ emailAddress: { address: email, name } }] };
-    const ok = await sendMessage(context, token, sender, baseMsg, atts);
-    if (ok) { context.res = { status: 200, headers: H, body: JSON.stringify({ ok: true }) }; return; }
-    return fail(502, "Could not send right now. Please email info@trinovahelveticgroup.ch.");
+    const send = await sendMessage(context, token, sender, baseMsg, atts);
+    if (send && send.ok) { context.res = { status: 200, headers: H, body: JSON.stringify({ ok: true }) }; return; }
+    // TEMP DIAGNOSTIC (remove once send is confirmed): surface the exact Graph failure.
+    const diag = send && (send.stage || send.status || send.detail) ? { stage: send.stage, status: send.status, code: send.code, detail: send.detail } : undefined;
+    context.log("enquiry sendMail failed", JSON.stringify(diag || {}));
+    context.res = { status: 502, headers: H, body: JSON.stringify({ error: "Could not send right now. Please email info@trinovahelveticgroup.ch.", diag }) }; return;
   } catch (e) { context.log("contact error", e && e.message); return fail(500, "The form could not be submitted right now. Please email info@trinovahelveticgroup.ch."); }
 };
