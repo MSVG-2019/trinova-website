@@ -24,6 +24,12 @@ async function graphToken(context) {
   });
   const j = await r.json(); return j.access_token || null;
 }
+// Parse a Graph error response into a compact { code, detail } for diagnostics/logging.
+async function graphErr(res) {
+  try { const j = await res.json(); const e = j && j.error; return { code: (e && e.code) || "", detail: (e && e.message ? String(e.message).slice(0, 300) : "") }; }
+  catch { return { code: "", detail: "" }; }
+}
+// Returns { ok, stage, status, code, detail }. ok:true means the message was accepted (202).
 async function sendMessage(context, token, sender, baseMsg, attachments) {
   const auth = { Authorization: `Bearer ${token}` };
   const small = (attachments || []).filter(a => a.bytes <= INLINE_MAX);
@@ -32,24 +38,28 @@ async function sendMessage(context, token, sender, baseMsg, attachments) {
     const message = Object.assign({}, baseMsg);
     if (small.length) message.attachments = small.map(a => ({ "@odata.type": "#microsoft.graph.fileAttachment", name: a.fn, contentType: a.ct, contentBytes: a.b64 }));
     const send = await fetch(`https://graph.microsoft.com/v1.0/users/${encodeURIComponent(sender)}/sendMail`, { method: "POST", headers: Object.assign({}, auth, { "Content-Type": "application/json" }), body: JSON.stringify({ message, saveToSentItems: true }) });
-    return send.status === 202;
+    if (send.status === 202) return { ok: true };
+    const e = await graphErr(send); context.log("sendMail failed", send.status, e.code, e.detail);
+    return { ok: false, stage: "sendMail", status: send.status, code: e.code, detail: e.detail };
   }
   const draftBody = Object.assign({}, baseMsg);
   if (small.length) draftBody.attachments = small.map(a => ({ "@odata.type": "#microsoft.graph.fileAttachment", name: a.fn, contentType: a.ct, contentBytes: a.b64 }));
   const dRes = await fetch(`https://graph.microsoft.com/v1.0/users/${encodeURIComponent(sender)}/messages`, { method: "POST", headers: Object.assign({}, auth, { "Content-Type": "application/json" }), body: JSON.stringify(draftBody) });
-  const draft = await dRes.json(); if (!draft.id) { context.log("draft failed", dRes.status); return false; }
+  const draft = await dRes.json(); if (!draft.id) { const e = await graphErr(dRes); context.log("draft failed", dRes.status, e.code); return { ok: false, stage: "createDraft", status: dRes.status, code: e.code, detail: e.detail }; }
   for (const a of large) {
     const buf = Buffer.from(a.b64, "base64");
     const sRes = await fetch(`https://graph.microsoft.com/v1.0/users/${encodeURIComponent(sender)}/messages/${draft.id}/attachments/createUploadSession`, { method: "POST", headers: Object.assign({}, auth, { "Content-Type": "application/json" }), body: JSON.stringify({ AttachmentItem: { attachmentType: "file", name: a.fn, size: buf.length, contentType: a.ct } }) });
-    const sess = await sRes.json(); if (!sess.uploadUrl) { context.log("session failed", sRes.status); return false; }
+    const sess = await sRes.json(); if (!sess.uploadUrl) { context.log("session failed", sRes.status); return { ok: false, stage: "uploadSession", status: sRes.status }; }
     const CHUNK = 4 * 1024 * 1024;
     for (let start = 0; start < buf.length; start += CHUNK) {
       const end = Math.min(start + CHUNK, buf.length);
       const put = await fetch(sess.uploadUrl, { method: "PUT", headers: { "Content-Length": String(end - start), "Content-Range": `bytes ${start}-${end - 1}/${buf.length}` }, body: buf.subarray(start, end) });
-      if (![200, 201, 202].includes(put.status)) { context.log("chunk failed", put.status); return false; }
+      if (![200, 201, 202].includes(put.status)) { context.log("chunk failed", put.status); return { ok: false, stage: "uploadChunk", status: put.status }; }
     }
   }
   const sendRes = await fetch(`https://graph.microsoft.com/v1.0/users/${encodeURIComponent(sender)}/messages/${draft.id}/send`, { method: "POST", headers: auth });
-  return sendRes.status === 202;
+  if (sendRes.status === 202) return { ok: true };
+  const e = await graphErr(sendRes); context.log("draft send failed", sendRes.status, e.code, e.detail);
+  return { ok: false, stage: "draftSend", status: sendRes.status, code: e.code, detail: e.detail };
 }
 module.exports = { ALLOWED, MAX_BYTES, INLINE_MAX, clip, line, validEmail, cleanAttachment, graphToken, sendMessage };
