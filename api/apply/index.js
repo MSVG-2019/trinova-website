@@ -35,9 +35,7 @@ module.exports = async function (context, req) {
     const baseMsg = { subject: `[Partner Application] — ${role} — ${name}`, body: { contentType: "Text", content: text }, toRecipients: [{ emailAddress: { address: to } }], replyTo: [{ emailAddress: { address: email, name } }] };
     const send = await sendMessage(context, token, sender, baseMsg, atts);
     if (send && send.ok) { context.res = { status: 200, headers: H, body: JSON.stringify({ ok: true }) }; return; }
-    // TEMP DIAGNOSTIC (remove once send is confirmed): surface the exact Graph failure.
-    const diag = send && (send.stage || send.status || send.detail) ? { stage: send.stage, status: send.status, code: send.code, detail: send.detail } : undefined;
-    context.log("apply sendMail failed", JSON.stringify(diag || {}));
-    context.res = { status: 502, headers: H, body: JSON.stringify({ error: "Could not submit right now. Please email your application to info@trinovahelveticgroup.ch.", diag }) }; return;
+    context.log("apply send failed", send && send.stage, send && send.status, send && send.code, send && send.detail);
+    return fail(502, "Could not submit right now. Please email your application to info@trinovahelveticgroup.ch.");
   } catch (e) { context.log("apply error", e && e.message); return fail(500, "The application could not be submitted right now. Please email info@trinovahelveticgroup.ch."); }
 };
